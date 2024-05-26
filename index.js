@@ -4,6 +4,8 @@ require("dotenv").config();
 const PORT = process.env.PORT || 8080;
 const app = express();
 
+
+
 app.get('/api/news/', async (req, res) => {
     const year=req.query.year
     const month=req.query.month
@@ -25,6 +27,10 @@ app.get('/api/news/', async (req, res) => {
 app.get('/api/test/', async (req, res) => {
     const saludo=req.query.saludo
     const nombre=req.query.nombre
+    res.header("Access-Control-Allow-Origin", "*")
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    res.header("Access-Control-Allow-credentials", true);
+    res.header("Access-Control-Allow-Methods", "GET");
     res.send({msg: saludo+" "+nombre})
 })
 
