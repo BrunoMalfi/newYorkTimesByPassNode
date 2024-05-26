@@ -16,6 +16,10 @@ app.get('/api/news/', async (req, res) => {
         const {document_type,news_desk,section_name,subsection_name,type_of_material,_id,word_count,uri,...rest}= doc
         return rest
     })
+    res.header("Access-Control-Allow-Origin", "*")
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    res.header("Access-Control-Allow-credentials", true);
+    res.header("Access-Control-Allow-Methods", "GET");
     res.json({response:newresponse});
   } catch (error) {
     res.status(500).send({ 
