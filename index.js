@@ -22,6 +22,12 @@ app.get('/api/news/', async (req, res) => {
   }
 });
 
+app.get('/api/test/', async (req, res) => {
+    const saludo=req.query.saludo
+    const nombre=req.query.nombre
+    res.send({msg: saludo+" "+nombre})
+})
+
 app.listen(PORT, () => {
   console.log('Server running on port'+PORT);
 });
