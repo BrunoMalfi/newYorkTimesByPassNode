@@ -10,7 +10,11 @@ app.get('/api/news/', async (req, res) => {
     const key=req.query.key
   try {
     const response = await axios.get("https://api.nytimes.com/svc/archive/v1/"+year+"/"+month+".json?api-key="+key);
-    res.json({response:response.data.response.docs});
+    const newresponse=response.data.response.docs.map((doc) =>{ 
+        const {document_type,news_desk,section_name,subsection_name,type_of_material,_id,word_count,uri,...rest}= doc
+        return rest
+    })
+    res.json({response:newresponse});
   } catch (error) {
     res.status(500).send({ 
         error: 'Error fetching data from New York Times'
